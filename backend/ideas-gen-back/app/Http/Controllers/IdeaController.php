@@ -13,8 +13,9 @@ class IdeaController extends Controller
     }
 
     public function add(Request $request) {
+        $text = $request->name;
         $idea = new idea;
-        $idea->$text = $request->$text;
+        $idea->text = $text;
         $idea->save();
         return $idea;
     }
