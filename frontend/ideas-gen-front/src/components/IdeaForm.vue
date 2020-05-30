@@ -1,4 +1,3 @@
-
 <template>
    <form @submit.prevent="submit" class="myform">
      <div class="button_cont" @click="get()" align="center"><a class="mybutton" target="_blank" rel="nofollow noopener">Получить идеи!</a></div>
@@ -17,9 +16,7 @@
 
 <script>
 import axios from 'axios'
-
 export default {
-
   data() {
     return {
       fields: {},
@@ -33,6 +30,7 @@ export default {
       this.errors = {};
       axios.post('api/idea/add', this.fields).then(() => {
         alert('Идея отправлена!');
+        this.fields = '';
       }).catch(error => {
         if (error.response.status === 422) {
           this.errors = error.response.data.errors || {};
@@ -73,8 +71,8 @@ export default {
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.4s ease 0s;
+  cursor: pointer;
 }
-
  .mybutton2 span {
    color: #27ae60;
    font-weight: bold;
