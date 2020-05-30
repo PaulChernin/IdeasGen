@@ -1,8 +1,8 @@
 
 <template>
    <form @submit.prevent="submit" class="myform">
-     <div class="button_cont" @click="get" align="center"><a class="mybutton" target="_blank" rel="nofollow noopener">Получить идеи!</a></div>
-     <div style="margin-bottom: 200px; color: white; font-weight: bold;">{{ideas}}</div>
+     <div class="button_cont" @click="get()" align="center"><a class="mybutton" target="_blank" rel="nofollow noopener">Получить идеи!</a></div>
+     <div  v-if="click" style="margin-bottom: 200px; color: white; font-weight: bold;">{{ideas[Math.floor(Math.random() * ideas.length)].text}} </div>
      <h2 style="color: white;">Уже есть хорошая идея, и ты хочешь ею поделиться?</h2>
         <div class="form-group">
             <label for="idea" style="color: white; margin-right: 25px;">Ваша идея     </label>
@@ -24,7 +24,8 @@ export default {
     return {
       fields: {},
       errors: {},
-      ideas: {}
+      ideas: {},
+      click: false
     }
   },
   methods: {
@@ -43,6 +44,7 @@ export default {
       .then((response) => {
         console.log('get')
         this.ideas = response.data
+        this.click = true
       })
     }
   },
@@ -67,6 +69,7 @@ export default {
 }
 .mybutton:hover {
   text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
   transition: all 0.4s ease 0s;
