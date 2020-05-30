@@ -30,7 +30,6 @@ export default {
       this.errors = {};
       axios.post('api/idea/add', this.fields).then(() => {
         alert('Идея отправлена!');
-        this.fields = '';
       }).catch(error => {
         if (error.response.status === 422) {
           this.errors = error.response.data.errors || {};
